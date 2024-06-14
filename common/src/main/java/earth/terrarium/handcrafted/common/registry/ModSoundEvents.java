@@ -12,8 +12,8 @@ public class ModSoundEvents {
     public static final ResourcefulRegistry<SoundEvent> SOUND_EVENTS = ResourcefulRegistries.create(BuiltInRegistries.SOUND_EVENT, Handcrafted.MOD_ID);
 
     public static final RegistryEntry<SoundEvent> HAMMER_WOOD = SOUND_EVENTS.register("hammer_wood", () ->
-        SoundEvent.createVariableRangeEvent(new ResourceLocation(Handcrafted.MOD_ID, "hammer_wood")));
+        SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "hammer_wood")));
 
     public static final RegistryEntry<SoundEvent> HAMMER_STONE = SOUND_EVENTS.register("hammer_stone", () ->
-        SoundEvent.createVariableRangeEvent(new ResourceLocation(Handcrafted.MOD_ID, "hammer_stone")));
+        SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "hammer_stone")));
 }

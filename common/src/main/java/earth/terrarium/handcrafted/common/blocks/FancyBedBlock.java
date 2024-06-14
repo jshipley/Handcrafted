@@ -10,9 +10,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -38,7 +39,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class FancyBedBlock extends BedBlock {
     public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
@@ -121,15 +121,12 @@ public class FancyBedBlock extends BedBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        InteractionResult result;
-        if (state.getValue(PART) == BedPart.HEAD) {
-            result = InteractionUtils.interactCushion(state, level, pos, player, hand, COLOR);
-        } else {
-            result = InteractionUtils.interactSheet(state, level, pos, player, hand, COLOR);
-        }
-        if (result != InteractionResult.PASS) return result;
-        return super.use(state, level, pos, player, hand, hit);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemInteractionResult result = state.getValue(PART) == BedPart.HEAD ?
+            InteractionUtils.interactCushion(state, level, pos, player, stack, COLOR) :
+            InteractionUtils.interactSheet(state, level, pos, player, stack, COLOR);
+        if (result != ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION) return result;
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
     public static DirectionalBlockProperty getShape(Block block, Direction direction, BlockGetter level, BlockPos pos) {
@@ -158,7 +155,7 @@ public class FancyBedBlock extends BedBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.BED_PILLOW, ConstantComponents.BED_SHEET);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.BED_PILLOW, ConstantComponents.BED_SHEET);
     }
 }

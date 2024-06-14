@@ -16,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
 
-@SuppressWarnings("deprecation")
 public class WallTrophyBlock extends SimpleBlock {
     public static final MapCodec<WallTrophyBlock> CODEC = simpleCodec(WallTrophyBlock::new);
     private static final EnumMap<Direction, VoxelShape> AABBS = Maps.newEnumMap(

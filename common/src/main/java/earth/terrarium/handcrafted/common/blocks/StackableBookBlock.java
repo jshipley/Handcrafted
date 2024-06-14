@@ -21,7 +21,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
 public class StackableBookBlock extends HorizontalDirectionalBlock {
     public static final MapCodec<StackableBookBlock> CODEC = simpleCodec(StackableBookBlock::new);
 
@@ -109,7 +108,7 @@ public class StackableBookBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
         return false;
     }
 }

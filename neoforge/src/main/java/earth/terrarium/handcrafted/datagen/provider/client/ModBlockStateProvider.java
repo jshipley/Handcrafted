@@ -25,7 +25,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import java.util.Random;
 
 public class ModBlockStateProvider extends BlockStateProvider {
-    public static final ResourceLocation CUSHION = new ResourceLocation(Handcrafted.MOD_ID, "block/cushion");
+    public static final ResourceLocation CUSHION = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cushion");
 
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, Handcrafted.MOD_ID, existingFileHelper);
@@ -58,17 +58,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.FANCY_BEDS.stream().map(RegistryEntry::get).forEach(this::fancyBed);
 
         stackableBook(ModBlocks.STACKABLE_BOOK.get());
-        simpleBlockItem(ModBlocks.OVEN.get(), models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/oven/oven")));
-        simpleBlockItem(ModBlocks.KITCHEN_HOOD.get(), models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/kitchen_hood/kitchen_hood")));
-        simpleBlockItem(ModBlocks.KITCHEN_HOOD_PIPE.get(), models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/kitchen_hood/kitchen_hood_straight_pipe")));
-        simpleBlockItem(ModBlocks.BERRY_JAM_JAR.get(), models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/jar/single")));
+        simpleBlockItem(ModBlocks.OVEN.get(), models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/oven/oven")));
+        simpleBlockItem(ModBlocks.KITCHEN_HOOD.get(), models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/kitchen_hood/kitchen_hood")));
+        simpleBlockItem(ModBlocks.KITCHEN_HOOD_PIPE.get(), models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/kitchen_hood/kitchen_hood_straight_pipe")));
+        simpleBlockItem(ModBlocks.BERRY_JAM_JAR.get(), models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/jar/single")));
     }
 
     private void cushion(Block block) {
         simpleBlock(block, models().getBuilder(name(block))
             .parent(models().getExistingFile(CUSHION))
-            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/cushion/" + name(block)))
-            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_cushion") + "_wool")));
+            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cushion/" + name(block)))
+            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_cushion") + "_wool")));
     }
 
     private void bench(Block block) {
@@ -79,9 +79,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModularSeatProperty shape = state.getValue(BenchBlock.SHAPE);
                 OptionalColorProperty color = state.getValue(BenchBlock.COLOR);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/bench/" + shape.getLocation());
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/bench/" + getTruncatedId(block, "_bench") + "_bench");
-                ResourceLocation cushionTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/bench/cushion/" + color.getSerializedName() + "_" + "cushion");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/" + shape.getLocation());
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/" + getTruncatedId(block, "_bench") + "_bench");
+                ResourceLocation cushionTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/cushion/" + color.getSerializedName() + "_" + "cushion");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -89,7 +89,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("cushion", cushionTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_bench") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_bench") + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360) + (shape == ModularSeatProperty.OUTER_LEFT || shape == ModularSeatProperty.INNER_LEFT ? -90 : 0))
                     .build();
             });
@@ -102,10 +102,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Direction dir = state.getValue(BenchBlock.FACING);
                 ModularSeatProperty shape = state.getValue(BenchBlock.SHAPE);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/metal_bench/" + shape.getLocation());
-                ResourceLocation texture = new ResourceLocation(Handcrafted.MOD_ID, "block/bench/" + getTruncatedId(block, "_bench") + "_bench");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/metal_bench/" + shape.getLocation());
+                ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/" + getTruncatedId(block, "_bench") + "_bench");
                 if (block.equals(ModBlocks.BENCH.get())) {
-                    texture = new ResourceLocation(Handcrafted.MOD_ID, "block/bench/bench");
+                    texture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/bench");
                 }
 
                 return ConfiguredModel.builder()
@@ -113,7 +113,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         models().getBuilder(String.format("%s_%s", name(block), shape.getSerializedName()))
                             .parent(models().getExistingFile(parent))
                             .texture("texture", texture)
-                            .texture("particle", new ResourceLocation(Handcrafted.MOD_ID, "block/bench/metal_particles")))
+                            .texture("particle", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/metal_particles")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360) + (shape == ModularSeatProperty.OUTER_LEFT || shape == ModularSeatProperty.INNER_LEFT ? -90 : 0))
                     .build();
             });
@@ -127,9 +127,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModularSeatProperty shape = state.getValue(CouchBlock.SHAPE);
                 ColorProperty color = state.getValue(CouchBlock.COLOR);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/couch/" + shape.getLocation());
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/couch/" + getTruncatedId(block, "_couch") + "_couch");
-                ResourceLocation cushionTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/couch/cushion/" + color.getSerializedName() + "_" + "cushion");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/couch/" + shape.getLocation());
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/couch/" + getTruncatedId(block, "_couch") + "_couch");
+                ResourceLocation cushionTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/couch/cushion/" + color.getSerializedName() + "_" + "cushion");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -137,7 +137,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("cushion", cushionTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_couch") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_couch") + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360) + (shape == ModularSeatProperty.OUTER_LEFT || shape == ModularSeatProperty.INNER_LEFT ? -90 : 0))
                     .build();
             });
@@ -150,9 +150,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Direction dir = state.getValue(ChairBlock.FACING);
                 OptionalColorProperty color = state.getValue(ChairBlock.COLOR);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/chair/chair");
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/chair/" + getTruncatedId(block, "_chair") + "_chair");
-                ResourceLocation cushionTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/chair/cushion/" + color.getSerializedName() + "_" + "cushion");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/chair/chair");
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/chair/" + getTruncatedId(block, "_chair") + "_chair");
+                ResourceLocation cushionTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/chair/cushion/" + color.getSerializedName() + "_" + "cushion");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -160,7 +160,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("cushion", cushionTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_chair") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_chair") + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -173,15 +173,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Direction dir = state.getValue(DiningBenchBlock.FACING);
                 DirectionalBlockProperty shape = state.getValue(DiningBenchBlock.SHAPE);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/dining_bench/" + shape.getSerializedName());
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/dining_bench/" + getTruncatedId(block, "_dining_bench") + "_dining_bench");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/dining_bench/" + shape.getSerializedName());
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/dining_bench/" + getTruncatedId(block, "_dining_bench") + "_dining_bench");
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s", name(block), shape.getSerializedName()))
                             .parent(models().getExistingFile(parent))
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_dining_bench") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_dining_bench") + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -203,12 +203,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getBuilder(name(block) + "_none"));
         getVariantBuilder(block)
             .forAllStates(state -> {
-                Direction dir = state.getValue(ChairBlock.FACING);
-                OptionalColorProperty color = state.getValue(ChairBlock.COLOR);
+                Direction dir = state.getValue(SimpleTableBlock.FACING);
+                OptionalColorProperty color = state.getValue(SimpleTableBlock.COLOR);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/" + name);
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/table/" + name + "/" + getTruncatedId(block, "_" + name) + "_" + name);
-                ResourceLocation sheetTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/table/sheet/" + color.getSerializedName() + "_" + "sheet");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/" + name);
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/table/" + name + "/" + getTruncatedId(block, "_" + name) + "_" + name);
+                ResourceLocation sheetTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/table/sheet/" + color.getSerializedName() + "_" + "sheet");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -216,7 +216,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("sheet", sheetTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_" + name) + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_" + name) + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -229,9 +229,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 TableProperty shape = state.getValue(TableBlock.SHAPE);
                 OptionalColorProperty color = state.getValue(TableBlock.COLOR);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/table/" + shape.getSerializedName());
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/table/table/" + getTruncatedId(block, "_table") + "_table");
-                ResourceLocation sheetTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/table/sheet/" + color.getSerializedName() + "_" + "sheet");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/table/" + shape.getSerializedName());
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/table/table/" + getTruncatedId(block, "_table") + "_table");
+                ResourceLocation sheetTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/table/sheet/" + color.getSerializedName() + "_" + "sheet");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -239,7 +239,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("sheet", sheetTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_table") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_table") + "_planks")))
                     .build();
             });
     }
@@ -252,9 +252,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 int type = state.getValue(CounterBlock.TYPE);
                 CounterProperty counter = state.getValue(CounterBlock.COUNTER);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/counter");
-                ResourceLocation woodTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/counter/" + getTruncatedId(block, "_counter") + "_counter_" + type);
-                ResourceLocation topTexture = new ResourceLocation(Handcrafted.MOD_ID, "block/counter/top/" + counter.getSerializedName());
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/counter");
+                ResourceLocation woodTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/counter/" + getTruncatedId(block, "_counter") + "_counter_" + type);
+                ResourceLocation topTexture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/counter/top/" + counter.getSerializedName());
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -262,7 +262,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                             .parent(models().getExistingFile(parent))
                             .texture("top", topTexture)
                             .texture("wood", woodTexture)
-                            .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_counter") + "_planks")))
+                            .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_counter") + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -280,13 +280,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .modelFile(
                         models().cube(
                             String.format("%s_%s", name(block), type),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_top"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_top"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_" + type),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_back"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_side"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_side")
-                        ).texture("particle", new ResourceLocation("block/" + woodType + "_planks")))
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_top"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_top"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_" + type),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_back"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_side"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/cupboard/" + woodType + "/cupboard_side")
+                        ).texture("particle", ResourceLocation.withDefaultNamespace("block/" + woodType + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -305,15 +305,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     .modelFile(
                         models().cube(
                             String.format("%s_%s_%s", name(block), shape.getSerializedName(), type),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_bottom"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_top"),
-                            new ResourceLocation(Handcrafted.MOD_ID, type != 4 ?
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_bottom"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_top"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, type != 4 ?
                                 "block/drawer/" + woodType + "/front_" + type + "/drawer_" + shape.getSerializedName() :
                                 "block/drawer/" + woodType + "/front_" + type + "/drawer"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_back"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_side_left"),
-                            new ResourceLocation(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_side_right")
-                        ).texture("particle", new ResourceLocation("block/" + woodType + "_planks")))
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_back"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_side_left"),
+                            ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/drawer/" + woodType + "/drawer_side_right")
+                        ).texture("particle", ResourceLocation.withDefaultNamespace("block/" + woodType + "_planks")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -326,20 +326,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Direction dir = state.getValue(ShelfBlock.FACING);
                 int type = state.getValue(ShelfBlock.TYPE);
 
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/shelf");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf");
                 String woodType = getTruncatedId(block, "_shelf");
                 DirectionalBlockProperty shape = state.getValue(ShelfBlock.SHAPE);
-                ResourceLocation woodTexture = new ResourceLocation("block/" + woodType + "_planks");
+                ResourceLocation woodTexture = ResourceLocation.withDefaultNamespace("block/" + woodType + "_planks");
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s_%s", name(block), shape.getSerializedName(), type))
                             .parent(models().getExistingFile(parent))
-                            .texture("back", new ResourceLocation(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_back"))
-                            .texture("left", new ResourceLocation(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_side_left"))
-                            .texture("right", new ResourceLocation(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_side_right"))
-                            .texture("front", new ResourceLocation(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_" + shape.getSerializedName()))
-                            .texture("overlay", new ResourceLocation(Handcrafted.MOD_ID, "block/shelf/overlay/" + switch (type) {
+                            .texture("back", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_back"))
+                            .texture("left", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_side_left"))
+                            .texture("right", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_side_right"))
+                            .texture("front", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf/" + woodType + "/shelf_" + shape.getSerializedName()))
+                            .texture("overlay", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/shelf/overlay/" + switch (type) {
                                 case 2 -> "books_%s".formatted(shape.getSerializedName());
                                 case 3 -> "cobwebs_%s".formatted(shape.getSerializedName());
                                 case 4 -> "potions_%s".formatted(shape.getSerializedName());
@@ -360,11 +360,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 AttachFace face = state.getValue(PillarTrimBlock.FACE);
                 int type = state.getValue(PillarTrimBlock.TYPE);
                 TrimProperty shape = state.getValue(PillarTrimBlock.SHAPE);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/trim/" + shape.getSerializedName() + "_pillar_trim");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trim/" + shape.getSerializedName() + "_pillar_trim");
 
-                ResourceLocation texture = new ResourceLocation(Handcrafted.MOD_ID, "block/trim/pillar/" + name(block) + "_2_" + shape.getSerializedName());
+                ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trim/pillar/" + name(block) + "_2_" + shape.getSerializedName());
                 if (type == 1) {
-                    texture = new ResourceLocation(Handcrafted.MOD_ID, "block/trim/pillar/" + name(block) + "_" + shape.getSerializedName());
+                    texture = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trim/pillar/" + name(block) + "_" + shape.getSerializedName());
                 }
 
                 return ConfiguredModel.builder()
@@ -385,13 +385,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Direction dir = state.getValue(CornerTrimBlock.FACING);
                 Half half = state.getValue(CornerTrimBlock.HALF);
                 TrimProperty shape = state.getValue(CornerTrimBlock.SHAPE);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/trim/" + shape.getSerializedName() + "_corner_trim");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trim/" + shape.getSerializedName() + "_corner_trim");
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s", name(block), shape.getSerializedName()))
                             .parent(models().getExistingFile(parent))
-                            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/trim/corner/" + name(block) + "_" + shape.getSerializedName())))
+                            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trim/corner/" + name(block) + "_" + shape.getSerializedName())))
                     .rotationX(half == Half.BOTTOM ? 180 : 0)
                     .rotationY(((((int) dir.toYRot()) + 180) % 360) + (half == Half.BOTTOM ? 0 : 180))
                     .build();
@@ -402,13 +402,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block, models().getBuilder(name(block)));
         PotBlock.PotSize size = ((PotBlock) block).size();
         simpleBlock(block, models().getBuilder(name(block))
-            .parent(models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, switch (size) {
+            .parent(models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, switch (size) {
                 case THIN -> "block/pot/thin_pot";
                 case MEDIUM -> "block/pot/medium_pot";
                 case WIDE -> "block/pot/wide_pot";
                 case THICK -> "block/pot/thick_pot";
             })))
-            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/pot/" + name(block))));
+            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/pot/" + name(block))));
     }
 
     private void bowl(Block block) {
@@ -416,13 +416,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
             .forAllStates(state -> {
                 Direction dir = state.getValue(CrockeryBlock.FACING);
                 String piecesName = CrockeryBlock.piecesName(state);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/bowl/" + piecesName);
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/bowl/" + piecesName);
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s", name(block), piecesName))
                             .parent(models().getExistingFile(parent))
-                            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/bowl/" + getTruncatedId(block, "_bowl") + "_crockery")))
+                            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/bowl/" + getTruncatedId(block, "_bowl") + "_crockery")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -433,13 +433,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
             .forAllStates(state -> {
                 Direction dir = state.getValue(CrockeryBlock.FACING);
                 String piecesName = CrockeryBlock.piecesName(state);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/cup/" + piecesName);
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/cup/" + piecesName);
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s", name(block), piecesName))
                             .parent(models().getExistingFile(parent))
-                            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_cup") + "_crockery")))
+                            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_cup") + "_crockery")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -450,13 +450,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
             .forAllStates(state -> {
                 Direction dir = state.getValue(CrockeryBlock.FACING);
                 String piecesName = CrockeryBlock.piecesName(state);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/plate/" + piecesName);
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/plate/" + piecesName);
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(String.format("%s_%s", name(block), piecesName))
                             .parent(models().getExistingFile(parent))
-                            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_plate") + "_crockery")))
+                            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_plate") + "_crockery")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -466,13 +466,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block)
             .forAllStates(state -> {
                 Direction dir = state.getValue(CrockeryBlock.FACING);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/combo");
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/combo");
 
                 return ConfiguredModel.builder()
                     .modelFile(
                         models().getBuilder(name(block))
                             .parent(models().getExistingFile(parent))
-                            .texture("texture", new ResourceLocation(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_crockery_combo") + "_crockery")))
+                            .texture("texture", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/crockery/" + getTruncatedId(block, "_crockery_combo") + "_crockery")))
                     .rotationY(((((int) dir.toYRot()) + 180) % 360))
                     .build();
             });
@@ -483,14 +483,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
             .forAllStates(state -> {
                 Direction dir = state.getValue(StackableBookBlock.FACING);
                 int seed = state.getValue(StackableBookBlock.SEED);
-                ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/stackable_book/" + StackableBookBlock.bookName(state));
+                ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/stackable_book/" + StackableBookBlock.bookName(state));
 
                 Random random = new Random(seed);
                 int randomInt = random.nextInt(15) + 1;
-                ResourceLocation book1 = new ResourceLocation(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId(randomInt).getName() + "_book");
-                ResourceLocation book2 = new ResourceLocation(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 1) % 15 + 1).getName() + "_book");
-                ResourceLocation book3 = new ResourceLocation(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 2) % 15 + 1).getName() + "_book");
-                ResourceLocation book4 = new ResourceLocation(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 3) % 15 + 1).getName() + "_book");
+                ResourceLocation book1 = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId(randomInt).getName() + "_book");
+                ResourceLocation book2 = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 1) % 15 + 1).getName() + "_book");
+                ResourceLocation book3 = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 2) % 15 + 1).getName() + "_book");
+                ResourceLocation book4 = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/stackable_book/" + DyeColor.byId((randomInt + 3) % 15 + 1).getName() + "_book");
 
                 return ConfiguredModel.builder()
                     .modelFile(
@@ -507,10 +507,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void fancyBed(Block block) {
         itemModels().getBuilder(name(block))
-            .parent(models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/bed_single_occupied")))
-            .texture("frame", new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/single/" + getTruncatedId(block, "_fancy_bed") + "_fancy_bed"))
-            .texture("sheets", new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/sheets/white_sheet"))
-            .texture("cushion", new ResourceLocation(Handcrafted.MOD_ID, "block/bench/cushion/white_cushion"));
+            .parent(models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/bed_single_occupied")))
+            .texture("frame", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/single/" + getTruncatedId(block, "_fancy_bed") + "_fancy_bed"))
+            .texture("sheets", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/sheets/white_sheet"))
+            .texture("cushion", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/cushion/white_cushion"));
 
         getVariantBuilder(block)
             .forAllStates(state -> {
@@ -521,28 +521,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ColorProperty color = state.getValue(FancyBedBlock.COLOR);
 
                 if (part == BedPart.HEAD) {
-                    ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/cushion");
+                    ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/cushion");
 
                     return ConfiguredModel.builder()
                         .modelFile(
                             models().getBuilder(String.format("%s_%s_%s_%s", name(block), shape.getSerializedName(), color.getSerializedName(), part.getSerializedName()) + (occupied ? "_occupied" : ""))
                                 .parent(models().getExistingFile(parent))
-                                .texture("cushion", new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/cushion/" + color.getSerializedName() + "_cushion"))
-                                .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_fancy_bed") + "_planks")))
+                                .texture("cushion", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/cushion/" + color.getSerializedName() + "_cushion"))
+                                .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_fancy_bed") + "_planks")))
                         .rotationY(((((int) dir.toYRot()) + 180) % 360))
                         .build();
                 } else {
-                    ResourceLocation parent = new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/bed_" + shape.getSerializedName() + (occupied ? "_occupied" : ""));
+                    ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/bed_" + shape.getSerializedName() + (occupied ? "_occupied" : ""));
                     String woodType = getTruncatedId(block, "_fancy_bed");
 
                     return ConfiguredModel.builder()
                         .modelFile(
                             models().getBuilder(String.format("%s_%s_%s_%s", name(block), shape.getSerializedName(), color.getSerializedName(), part.getSerializedName()) + (occupied ? "_occupied" : ""))
                                 .parent(models().getExistingFile(parent))
-                                .texture("frame", new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/" + (shape == DirectionalBlockProperty.SINGLE ? "single" : "double") + "/" + woodType + "_fancy_bed"))
-                                .texture("sheets", new ResourceLocation(Handcrafted.MOD_ID, "block/fancy_bed/sheets/" + color.getSerializedName() + "_sheet"))
-                                .texture("cushion", new ResourceLocation(Handcrafted.MOD_ID, "block/bench/cushion/none_cushion"))
-                                .texture("particle", new ResourceLocation("block/" + getTruncatedId(block, "_fancy_bed") + "_planks")))
+                                .texture("frame", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/" + (shape == DirectionalBlockProperty.SINGLE ? "single" : "double") + "/" + woodType + "_fancy_bed"))
+                                .texture("sheets", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/fancy_bed/sheets/" + color.getSerializedName() + "_sheet"))
+                                .texture("cushion", ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/bench/cushion/none_cushion"))
+                                .texture("particle", ResourceLocation.withDefaultNamespace("block/" + getTruncatedId(block, "_fancy_bed") + "_planks")))
                         .rotationY(((((int) dir.toYRot()) + 180) % 360))
                         .build();
                 }
@@ -550,8 +550,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void trophy(Block block) {
-        simpleBlockItem(block, models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/trophy/" + name(block))));
-        horizontalBlock(block, models().getExistingFile(new ResourceLocation(Handcrafted.MOD_ID, "block/trophy/" + name(block))));
+        simpleBlockItem(block, models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trophy/" + name(block))));
+        horizontalBlock(block, models().getExistingFile(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "block/trophy/" + name(block))));
     }
 
     public String getTruncatedId(Block block, String cut) {

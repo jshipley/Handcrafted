@@ -106,7 +106,7 @@ public class ModBlockTagProvider extends TagsProvider<Block> {
     }
 
     private void addSet(ResourcefulRegistry<Block> registry, String name) {
-        registry.stream().forEach(b -> tag(TagKey.create(Registries.BLOCK, new ResourceLocation(Handcrafted.MOD_ID, name))).add(TagEntry.element(b.getId())));
+        registry.stream().forEach(b -> tag(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, name))).add(TagEntry.element(b.getId())));
     }
 
     private void addPickaxe(ResourcefulRegistry<Block> registry) {

@@ -46,7 +46,7 @@ public enum OptionalColorProperty implements StringRepresentable {
 
     public ItemStack toCushion() {
         if (this == NONE) return ItemStack.EMPTY;
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(Handcrafted.MOD_ID, getSerializedName() + "_cushion")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_cushion")).getDefaultInstance();
     }
 
     public static OptionalColorProperty fromSheet(Item sheet) {
@@ -55,6 +55,6 @@ public enum OptionalColorProperty implements StringRepresentable {
 
     public ItemStack toSheet() {
         if (this == NONE) return ItemStack.EMPTY;
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(Handcrafted.MOD_ID, getSerializedName() + "_sheet")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_sheet")).getDefaultInstance();
     }
 }

@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import earth.terrarium.handcrafted.common.blocks.base.Hammerable;
 import earth.terrarium.handcrafted.common.blocks.base.SimpleBlock;
 import earth.terrarium.handcrafted.common.registry.ModSoundEvents;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
@@ -23,8 +22,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
-@MethodsReturnNonnullByDefault
 public class KitchenHoodPipeBlock extends SimpleBlock implements Hammerable {
     public static final MapCodec<KitchenHoodPipeBlock> CODEC = simpleCodec(KitchenHoodPipeBlock::new);
 

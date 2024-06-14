@@ -13,7 +13,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings("deprecation")
 public class MetalBenchBlock extends ModularSeatBlock {
     public static final MapCodec<MetalBenchBlock> CODEC = simpleCodec(MetalBenchBlock::new);
     public static final AABB SEAT = new AABB(0, 0, 0, 1, 0.5, 1);

@@ -11,7 +11,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -23,7 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.entity.EntityInLevelCallback;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector3f;
 
 @MethodsReturnNonnullByDefault
 public class Seat extends Entity {
@@ -65,8 +66,8 @@ public class Seat extends Entity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this, canRotate ? 1 : 0);
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
+        return new ClientboundAddEntityPacket(this, serverEntity, canRotate ? 1 : 0);
     }
 
     @Override
@@ -125,16 +126,11 @@ public class Seat extends Entity {
         return shape.move(this.blockPosition());
     }
 
-    protected Vector3f getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float f) {
+    protected Vec3 getPassengerAttachmentPoint(Entity entity, EntityDimensions dimensions, float partialTick) {
         if (shape == null) {
-            return super.getPassengerAttachmentPoint(entity, dimensions, f);
+            return super.getPassengerAttachmentPoint(entity, dimensions, partialTick);
         }
-        return new Vector3f(0, (float) (shape.getYsize() * 0.75) + 0.2f, 0);
-    }
-
-    @Override
-    protected float ridingOffset(Entity entity) {
-        return (float) (shape.getYsize() * 0.75);
+        return new Vec3(0, (float) (shape.getYsize() * 0.75) + 0.2f, 0);
     }
 
     protected void clampRotation(Entity entityToUpdate) {
@@ -160,16 +156,13 @@ public class Seat extends Entity {
     }
 
     @Override
-    protected void defineSynchedData() {
-    }
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {}
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag compound) {
-    }
+    protected void readAdditionalSaveData(CompoundTag compound) {}
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag compound) {
-    }
+    protected void addAdditionalSaveData(CompoundTag compound) {}
 
     private class WrappedLevelCallBack implements EntityInLevelCallback {
         private final EntityInLevelCallback callback;

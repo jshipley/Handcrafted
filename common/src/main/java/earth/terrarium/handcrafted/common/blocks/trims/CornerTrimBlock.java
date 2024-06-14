@@ -9,12 +9,12 @@ import earth.terrarium.handcrafted.common.blocks.base.properties.TrimProperty;
 import earth.terrarium.handcrafted.common.constants.ConstantComponents;
 import earth.terrarium.handcrafted.common.registry.ModSoundEvents;
 import earth.terrarium.handcrafted.common.utils.TooltipUtils;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -36,13 +36,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
-@MethodsReturnNonnullByDefault
 public class CornerTrimBlock extends SimpleBlock implements Hammerable {
     public static final MapCodec<CornerTrimBlock> CODEC = RecordCodecBuilder.mapCodec(
         instance -> instance.group(
@@ -169,8 +166,8 @@ public class CornerTrimBlock extends SimpleBlock implements Hammerable {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.HAMMER_USE_SHAPE);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.HAMMER_USE_SHAPE);
     }
 
     static {

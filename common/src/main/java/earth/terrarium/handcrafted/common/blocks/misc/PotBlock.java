@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
 public class PotBlock extends Block {
     public static final VoxelShape THIN_SHAPE = Stream.of(
         Block.box(5, 12, 5, 11, 14, 11),

@@ -33,6 +33,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         getBuilder(item.toString())
             .parent(new ModelFile.UncheckedModelFile("item/generated"))
-            .texture("layer0", new ResourceLocation(itemLocation.getNamespace(), "item/" + folder + "/" + itemLocation.getPath()));
+            .texture("layer0", ResourceLocation.fromNamespaceAndPath(itemLocation.getNamespace(), "item/" + folder + "/" + itemLocation.getPath()));
     }
 }

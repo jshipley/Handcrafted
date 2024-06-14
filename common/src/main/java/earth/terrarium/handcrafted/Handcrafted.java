@@ -9,9 +9,9 @@ public class Handcrafted {
     public static void init() {
         ModBlocks.BLOCKS.init();
         ModItems.ITEMS.init();
+        ModItems.TABS.init();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.init();
         ModEntityTypes.ENTITY_TYPES.init();
         ModSoundEvents.SOUND_EVENTS.init();
-        ModPaintingVariants.PAINTING_VARIANTS.init();
     }
 }

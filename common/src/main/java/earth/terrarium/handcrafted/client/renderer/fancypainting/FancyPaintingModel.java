@@ -8,11 +8,11 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 public class FancyPaintingModel {
-    public static final ModelLayerLocation LAYER_LOCATION_SMALL = new ModelLayerLocation(new ResourceLocation(Handcrafted.MOD_ID, "fancy_painting_small"), "main");
-    public static final ModelLayerLocation LAYER_LOCATION_MEDIUM = new ModelLayerLocation(new ResourceLocation(Handcrafted.MOD_ID, "fancy_painting_medium"), "main");
-    public static final ModelLayerLocation LAYER_LOCATION_LARGE = new ModelLayerLocation(new ResourceLocation(Handcrafted.MOD_ID, "fancy_painting_large"), "main");
-    public static final ModelLayerLocation LAYER_LOCATION_TALL = new ModelLayerLocation(new ResourceLocation(Handcrafted.MOD_ID, "fancy_painting_tall"), "main");
-    public static final ModelLayerLocation LAYER_LOCATION_WIDE = new ModelLayerLocation(new ResourceLocation(Handcrafted.MOD_ID, "fancy_painting_wide"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION_SMALL = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "fancy_painting_small"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION_MEDIUM = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "fancy_painting_medium"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION_LARGE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "fancy_painting_large"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION_TALL = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "fancy_painting_tall"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION_WIDE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "fancy_painting_wide"), "main");
 
     public static LayerDefinition paintingLargeLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();

@@ -2,6 +2,7 @@ package earth.terrarium.handcrafted.common.blocks.crockery;
 
 import earth.terrarium.handcrafted.common.registry.ModBlockEntityTypes;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class CrockeryBlockEntity extends BlockEntity {
     private ItemStack item = ItemStack.EMPTY;
@@ -20,13 +20,17 @@ public class CrockeryBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        tag.put("Item", item.save(new CompoundTag()));
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        if (!this.item.isEmpty()) {
+            tag.put("item", item.save(registries));
+        }
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        this.item = ItemStack.of(tag.getCompound("Item"));
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.item = ItemStack.parse(registries, tag.getCompound("item")).orElse(ItemStack.EMPTY);
     }
 
     public ItemStack getStack() {
@@ -46,8 +50,8 @@ public class CrockeryBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
     }
 
     @Override

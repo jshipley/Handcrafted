@@ -15,7 +15,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
 @MethodsReturnNonnullByDefault
 public class KitchenHoodBlock extends SimpleBlock {
     public static final MapCodec<KitchenHoodBlock> CODEC = simpleCodec(KitchenHoodBlock::new);

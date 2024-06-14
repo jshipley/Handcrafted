@@ -5,6 +5,7 @@ import earth.terrarium.handcrafted.common.constants.ConstantComponents;
 import earth.terrarium.handcrafted.common.utils.TooltipUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -16,12 +17,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-@SuppressWarnings("deprecation")
 public class SideTableBlock extends SimpleTableBlock implements EntityBlock {
     public static final VoxelShape SHAPE = Stream.of(
         Block.box(2, 12, 2, 14, 16, 14),
@@ -47,7 +46,7 @@ public class SideTableBlock extends SimpleTableBlock implements EntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.SHEET);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.SHEET);
     }
 }

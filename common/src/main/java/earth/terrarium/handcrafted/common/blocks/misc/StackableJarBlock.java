@@ -18,7 +18,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class StackableJarBlock extends SimpleBlock {
     public static final MapCodec<StackableJarBlock> CODEC = simpleCodec(StackableJarBlock::new);
 

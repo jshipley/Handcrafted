@@ -48,6 +48,6 @@ public enum CounterProperty implements StringRepresentable {
     }
 
     public ItemStack toBlock() {
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(getSerializedName())).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(getSerializedName())).getDefaultInstance();
     }
 }

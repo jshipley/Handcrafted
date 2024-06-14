@@ -4,6 +4,7 @@ import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistry;
 import earth.terrarium.handcrafted.common.registry.ModItems;
 import earth.terrarium.handcrafted.common.tags.ModItemTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -21,8 +23,8 @@ import java.util.function.Supplier;
 public class ModRecipeProvider extends RecipeProvider {
     private RecipeOutput output;
 
-    public ModRecipeProvider(PackOutput packOutput) {
-        super(packOutput);
+    public ModRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(packOutput, lookupProvider);
     }
 
     @Override
@@ -432,14 +434,14 @@ public class ModRecipeProvider extends RecipeProvider {
         if (result.getId().getPath().contains("dark_oak")) {
             return Items.DARK_OAK_PLANKS;
         }
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(result.getId().getPath().split("_")[0] + "_planks"));
+        return BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(result.getId().getPath().split("_")[0] + "_planks"));
     }
 
     private Item getSlab(RegistryEntry<Item> result) {
         if (result.getId().getPath().contains("dark_oak")) {
             return Items.DARK_OAK_SLAB;
         }
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(result.getId().getPath().split("_")[0] + "_slab"));
+        return BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(result.getId().getPath().split("_")[0] + "_slab"));
     }
 
     private Item getWool(RegistryEntry<Item> result) {
@@ -449,6 +451,6 @@ public class ModRecipeProvider extends RecipeProvider {
         if (result.getId().getPath().contains("light_gray")) {
             return Items.LIGHT_GRAY_WOOL;
         }
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(result.getId().getPath().split("_")[0] + "_wool"));
+        return BuiltInRegistries.ITEM.get(ResourceLocation.withDefaultNamespace(result.getId().getPath().split("_")[0] + "_wool"));
     }
 }

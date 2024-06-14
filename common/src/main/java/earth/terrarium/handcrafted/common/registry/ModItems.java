@@ -1,6 +1,6 @@
 package earth.terrarium.handcrafted.common.registry;
 
-import com.teamresourceful.resourcefullib.common.item.tabs.ResourcefulCreativeTab;
+import com.teamresourceful.resourcefullib.common.item.tabs.ResourcefulCreativeModeTab;
 import com.teamresourceful.resourcefullib.common.registry.RegistryEntry;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistries;
 import com.teamresourceful.resourcefullib.common.registry.ResourcefulRegistry;
@@ -18,15 +18,14 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 
-import java.util.function.Supplier;
-
 @SuppressWarnings("unused")
 public class ModItems {
     public static final ResourcefulRegistry<Item> ITEMS = ResourcefulRegistries.create(BuiltInRegistries.ITEM, Handcrafted.MOD_ID);
-    public static final Supplier<CreativeModeTab> TAB = new ResourcefulCreativeTab(new ResourceLocation(Handcrafted.MOD_ID, "main"))
+    public static final ResourcefulRegistry<CreativeModeTab> TABS = ResourcefulRegistries.create(BuiltInRegistries.CREATIVE_MODE_TAB, Handcrafted.MOD_ID);
+    public static final RegistryEntry<CreativeModeTab> TAB = TABS.register("main", () -> new ResourcefulCreativeModeTab(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, "main"))
         .setItemIcon(() -> ModItems.OAK_BENCH.get())
         .addRegistry(ITEMS)
-        .build();
+        .build());
 
     public static final ResourcefulRegistry<Item> CUSHIONS = ResourcefulRegistries.create(ITEMS);
     public static final ResourcefulRegistry<Item> SHEETS = ResourcefulRegistries.create(ITEMS);
@@ -57,7 +56,7 @@ public class ModItems {
     public static final ResourcefulRegistry<Item> CROCKERY_COMBOS = ResourcefulRegistries.create(CROCKERY);
 
     public static final RegistryEntry<Item> HAMMER = ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().stacksTo(1)));
-    public static final RegistryEntry<Item> FANCY_PAINTING = ITEMS.register("fancy_painting", () -> new CustomPaintingItem(new Item.Properties(), ModPaintingVariants.APPLE, ModPaintingVariantTags.PAINTINGS));
+    public static final RegistryEntry<Item> FANCY_PAINTING = ITEMS.register("fancy_painting", () -> new CustomPaintingItem(new Item.Properties(), ModPaintingVariantTags.PAINTINGS));
 
     public static final RegistryEntry<Item> OVEN = ITEMS.register("oven", () -> new BlockItem(ModBlocks.OVEN.get(), new Item.Properties()));
     public static final RegistryEntry<Item> KITCHEN_HOOD = ITEMS.register("kitchen_hood", () -> new BlockItem(ModBlocks.KITCHEN_HOOD.get(), new Item.Properties()));

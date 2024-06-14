@@ -8,12 +8,12 @@ import earth.terrarium.handcrafted.common.blocks.base.properties.TrimProperty;
 import earth.terrarium.handcrafted.common.constants.ConstantComponents;
 import earth.terrarium.handcrafted.common.registry.ModSoundEvents;
 import earth.terrarium.handcrafted.common.utils.TooltipUtils;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -35,12 +35,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
-@MethodsReturnNonnullByDefault
 public class PillarTrimBlock extends FaceAttachedHorizontalDirectionalBlock implements Hammerable, SimpleWaterloggedBlock {
     public static final MapCodec<PillarTrimBlock> CODEC = RecordCodecBuilder.mapCodec(
         instance -> instance.group(
@@ -167,8 +164,8 @@ public class PillarTrimBlock extends FaceAttachedHorizontalDirectionalBlock impl
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.HAMMER_USE_SHAPE, ConstantComponents.HAMMER_USE_LOOK_SHIFT);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.HAMMER_USE_SHAPE, ConstantComponents.HAMMER_USE_LOOK_SHIFT);
     }
 
     @Override

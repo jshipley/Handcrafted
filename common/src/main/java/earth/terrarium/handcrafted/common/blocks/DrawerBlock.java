@@ -14,12 +14,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -33,11 +33,9 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class DrawerBlock extends HorizontalDirectionalBlock implements Hammerable, EntityBlock {
     public static final MapCodec<DrawerBlock> CODEC = simpleCodec(DrawerBlock::new);
     public static final IntegerProperty TYPE = IntegerProperty.create("type", 1, 4);
@@ -83,14 +81,14 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements Hammerabl
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.isClientSide()) return InteractionResult.CONSUME_PARTIAL;
-        if (player.getItemInHand(hand).is(ModItems.HAMMER.get())) return InteractionResult.PASS;
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.isClientSide()) return ItemInteractionResult.CONSUME_PARTIAL;
+        if (stack.is(ModItems.HAMMER.get())) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (level.getBlockEntity(pos) instanceof ContainerBlockEntity container) {
             player.openMenu(container);
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -99,8 +97,8 @@ public class DrawerBlock extends HorizontalDirectionalBlock implements Hammerabl
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.HAMMER_USE_LOOK);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.HAMMER_USE_LOOK);
     }
 
     @Override

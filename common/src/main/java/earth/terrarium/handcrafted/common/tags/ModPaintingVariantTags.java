@@ -10,6 +10,6 @@ public final class ModPaintingVariantTags {
     public static final TagKey<PaintingVariant> PAINTINGS = tag("paintings");
 
     private static TagKey<PaintingVariant> tag(String name) {
-        return TagKey.create(Registries.PAINTING_VARIANT, new ResourceLocation(Handcrafted.MOD_ID, name));
+        return TagKey.create(Registries.PAINTING_VARIANT, ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, name));
     }
 }

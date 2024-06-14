@@ -10,7 +10,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -25,11 +27,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class CrockeryComboBlock extends SimpleBlock implements EntityBlock {
     public static final MapCodec<CrockeryComboBlock> CODEC = simpleCodec(CrockeryComboBlock::new);
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 3, 16);
@@ -67,21 +67,29 @@ public class CrockeryComboBlock extends SimpleBlock implements EntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        TooltipUtils.addDescriptionComponent(tooltip, ConstantComponents.CROCKERY_COMBO);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.CROCKERY_COMBO);
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (level.getBlockEntity(pos) instanceof CrockeryBlockEntity crockery) {
+            if (crockery.getStack().isEmpty()) {
+                crockery.setStack(stack.copyWithCount(1));
+                if (!player.getAbilities().instabuild) stack.shrink(1);
+                level.playSound(null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, player.getSoundSource(), 1, 1);
+                return ItemInteractionResult.SUCCESS;
+            }
+        }
+
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (level.getBlockEntity(pos) instanceof CrockeryBlockEntity crockery) {
             ItemStack stack = crockery.getStack();
-            if (stack.isEmpty()) {
-                ItemStack itemInHand = player.getItemInHand(hand).copy();
-                itemInHand.setCount(1);
-                crockery.setStack(itemInHand);
-                if (!player.getAbilities().instabuild) player.getItemInHand(hand).shrink(1);
-                level.playSound(null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, player.getSoundSource(), 1, 1);
-            } else {
+            if (!stack.isEmpty()) {
                 Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), stack);
                 crockery.setStack(ItemStack.EMPTY);
                 level.playSound(null, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, player.getSoundSource(), 1, 1);

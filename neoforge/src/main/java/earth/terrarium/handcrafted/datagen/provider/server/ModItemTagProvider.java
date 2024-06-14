@@ -114,6 +114,6 @@ public class ModItemTagProvider extends TagsProvider<Item> {
     }
 
     private void addSet(ResourcefulRegistry<Item> registry, String name) {
-        registry.stream().forEach(b -> tag(TagKey.create(Registries.ITEM, new ResourceLocation(Handcrafted.MOD_ID, name))).add(TagEntry.element(b.getId())));
+        registry.stream().forEach(b -> tag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, name))).add(TagEntry.element(b.getId())));
     }
 }

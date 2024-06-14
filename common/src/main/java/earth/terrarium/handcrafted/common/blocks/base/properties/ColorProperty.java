@@ -44,7 +44,7 @@ public enum ColorProperty implements StringRepresentable {
     }
 
     public ItemStack toCushion() {
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(Handcrafted.MOD_ID, getSerializedName() + "_cushion")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_cushion")).getDefaultInstance();
     }
 
     public static ColorProperty fromSheet(Item sheet) {
@@ -52,6 +52,6 @@ public enum ColorProperty implements StringRepresentable {
     }
 
     public ItemStack toSheet() {
-        return BuiltInRegistries.ITEM.get(new ResourceLocation(Handcrafted.MOD_ID, getSerializedName() + "_sheet")).getDefaultInstance();
+        return BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, getSerializedName() + "_sheet")).getDefaultInstance();
     }
 }

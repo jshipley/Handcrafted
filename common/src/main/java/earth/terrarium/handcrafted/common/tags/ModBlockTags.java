@@ -10,6 +10,6 @@ public final class ModBlockTags {
     public static final TagKey<Block> TABLE_CONNECTABLE = tag("table_connectable");
 
     private static TagKey<Block> tag(String name) {
-        return TagKey.create(Registries.BLOCK, new ResourceLocation(Handcrafted.MOD_ID, name));
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, name));
     }
 }

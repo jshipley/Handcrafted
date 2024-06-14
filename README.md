@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    "modImplementation"(group = "earth.terrarium.handcrafted", name = "handcrafted-$modLoader-$minecraftVersion", version = handcraftedVersion)
+    modImplementation(group = "earth.terrarium.handcrafted", name = "handcrafted-$modLoader-$minecraftVersion", version = handcraftedVersion)
 }
 ```
 
@@ -22,6 +22,6 @@ repositories {
 }
 
 dependencies {
-    "modImplementation" group: "earth.terrarium.handcrafted", name: "handcrafted-$modLoader-$minecraftVersion", version: handcraftedVersion
+    modImplementation group: "earth.terrarium.handcrafted", name: "handcrafted-$modLoader-$minecraftVersion", version: handcraftedVersion
 }
 ```

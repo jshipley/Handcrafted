@@ -1,10 +1,14 @@
 package earth.terrarium.handcrafted.common.entities;
 
+import earth.terrarium.handcrafted.Handcrafted;
 import earth.terrarium.handcrafted.common.registry.ModEntityTypes;
 import earth.terrarium.handcrafted.common.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.Painting;
 import net.minecraft.world.entity.decoration.PaintingVariant;
@@ -19,10 +23,8 @@ public class FancyPainting extends Painting {
         super(type, level);
     }
 
-    public FancyPainting(Level level, BlockPos pos, Direction direction, Holder<PaintingVariant> holder) {
+    public FancyPainting(Level level, BlockPos pos) {
         super(ModEntityTypes.FANCY_PAINTING.get(), level);
-        this.setVariant(holder);
-        this.setDirection(direction);
         this.pos = pos;
     }
 
@@ -33,6 +35,29 @@ public class FancyPainting extends Painting {
 
     @Override
     public ItemStack getPickResult() {
-        return new ItemStack(ModItems.FANCY_PAINTING.get());
+        return ModItems.FANCY_PAINTING.get().getDefaultInstance();
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        PaintingVariant variant = this.getVariant().value();
+        compound.putString("variant", variant.assetId().getPath());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("variant", CompoundTag.TAG_STRING)) {
+            ResourceLocation location = ResourceLocation.fromNamespaceAndPath(Handcrafted.MOD_ID, compound.getString("variant"));
+            registryAccess().lookupOrThrow(Registries.PAINTING_VARIANT)
+                .get(ResourceKey.create(Registries.PAINTING_VARIANT, location))
+                .ifPresent(this::setVariant);
+        }
     }
 }

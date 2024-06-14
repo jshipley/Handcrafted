@@ -20,10 +20,6 @@ dependencies {
     val fabricLoaderVersion: String by project
     val fabricApiVersion: String by project
     val modMenuVersion: String by project
-    val reiVersion: String by project
-
-    "modLocalRuntime"(group = "me.shedaniel", name = "RoughlyEnoughItems-fabric", version = reiVersion)
-    "modCompileOnly"(group = "me.shedaniel", name = "RoughlyEnoughItems-default-plugin", version = reiVersion)
 
     modImplementation(group = "net.fabricmc", name = "fabric-loader", version = fabricLoaderVersion)
     modApi(group = "net.fabricmc.fabric-api", name = "fabric-api", version = "$fabricApiVersion+$minecraftVersion")

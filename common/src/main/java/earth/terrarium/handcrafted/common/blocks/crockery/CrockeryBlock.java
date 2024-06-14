@@ -18,7 +18,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class CrockeryBlock extends SimpleBlock {
     public static final MapCodec<CrockeryBlock> CODEC = simpleCodec(CrockeryBlock::new);
     public static final IntegerProperty PIECES = IntegerProperty.create("pieces", 1, 6);
