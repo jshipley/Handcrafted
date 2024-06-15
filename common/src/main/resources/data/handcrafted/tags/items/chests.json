@@ -4,10 +4,6 @@
     {
       "id": "#c:chests",
       "required": false
-    },
-    {
-      "id": "#forge:chests",
-      "required": false
     }
   ]
 }

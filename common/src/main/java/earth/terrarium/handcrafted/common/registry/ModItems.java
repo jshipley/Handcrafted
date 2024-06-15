@@ -334,7 +334,7 @@ public class ModItems {
     public static final RegistryEntry<Item> WITHER_SKELETON_TROPHY = TROPHIES.register("wither_skeleton_trophy", () -> new BlockItem(ModBlocks.WITHER_SKELETON_TROPHY.get(), new Item.Properties()));
     public static final RegistryEntry<Item> WOLF_TROPHY = TROPHIES.register("wolf_trophy", () -> new BlockItem(ModBlocks.WOLF_TROPHY.get(), new Item.Properties()));
 
-    public static final RegistryEntry<Item> PHANTOM_TROPHY = ITEMS.register("phantom_trophy", () -> new BlockItem(ModBlocks.PHANTOM_TROPHY.get(), new Item.Properties()));
+    public static final RegistryEntry<Item> PHANTOM_TROPHY = TROPHIES.register("phantom_trophy", () -> new BlockItem(ModBlocks.PHANTOM_TROPHY.get(), new Item.Properties()));
 
     public static final RegistryEntry<Item> CREEPER_TROPHY = TROPHIES.register("creeper_trophy", () -> new BlockItem(ModBlocks.CREEPER_TROPHY.get(), new Item.Properties()));
     public static final RegistryEntry<Item> SKELETON_TROPHY = TROPHIES.register("skeleton_trophy", () -> new BlockItem(ModBlocks.SKELETON_TROPHY.get(), new Item.Properties()));

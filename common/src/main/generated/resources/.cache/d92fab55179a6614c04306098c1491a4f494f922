@@ -1,4 +1,4 @@
-// 1.21	2024-06-14T15:04:48.026246	Tags for minecraft:item mod id handcrafted
+// 1.21	2024-06-15T11:08:37.057245	Tags for minecraft:item mod id handcrafted
 148d9202ace672cfdf451a46397702b32fab9450 data/handcrafted/tags/item/benches.json
 3662d7ac15380cec631c2eb872b6cbbb69072d62 data/handcrafted/tags/item/bowls.json
 d23ee811738879d0b22d489c76f6947f6b0ccf40 data/handcrafted/tags/item/chairs.json
@@ -26,6 +26,6 @@ d112ab59e44172869a67906c9fa183dc24bd4cfd data/handcrafted/tags/item/shelves.json
 0a476d2c80837899a06ef0ec1d6f93c65a06b6e6 data/handcrafted/tags/item/tables.json
 408a5532264615089c4903b190b340520128fb8d data/handcrafted/tags/item/trim_materials.json
 2eb1cdbe5ae5c4c2dccbe453cb855815860eb4c6 data/handcrafted/tags/item/trims.json
-df918434c0a6a43e73962c398e63489375534dd4 data/handcrafted/tags/item/trophies.json
+fc2ac2105e437d1f002cab5eca7c30cf01640e40 data/handcrafted/tags/item/trophies.json
 d8eb078f9f793ef17806bb6e83b18f5649f6542e data/handcrafted/tags/item/wooden_benches.json
 ab0e36c3ebe380ea3defda5c2803d4177ca1e908 data/minecraft/tags/item/beds.json
