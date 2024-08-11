@@ -106,7 +106,7 @@ public class CounterBlock extends HorizontalDirectionalBlock implements Hammerab
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
-        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.COUNTER, ConstantComponents.HAMMER_USE_LOOK);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tooltipComponents, ConstantComponents.COUNTER, ConstantComponents.HAMMER_USE_LOOK);
     }
 }

@@ -46,7 +46,7 @@ public class NightstandBlock extends SimpleTableBlock implements EntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
-        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.SHEET);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tooltipComponents, ConstantComponents.SHEET);
     }
 }

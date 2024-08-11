@@ -48,7 +48,7 @@ public class CushionBlock extends Block implements SittableBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
-        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.PLACE_ON_FURNITURE);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tooltipComponents, ConstantComponents.PLACE_ON_FURNITURE);
     }
 }

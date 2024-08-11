@@ -1,1 +1,2 @@
-- Fix chest tag
+- Fixed 1.21.1 crash when placing blocks with containers
+- Fixed desk displaying the wrong tooltip (#112)

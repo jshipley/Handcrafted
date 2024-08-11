@@ -46,7 +46,7 @@ public class DeskBlock extends SimpleTableBlock implements EntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tootipComponents, TooltipFlag tooltipFlag) {
-        TooltipUtils.addDescriptionComponent(tootipComponents, ConstantComponents.HAMMER);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        TooltipUtils.addDescriptionComponent(tooltipComponents, ConstantComponents.SHEET);
     }
 }
