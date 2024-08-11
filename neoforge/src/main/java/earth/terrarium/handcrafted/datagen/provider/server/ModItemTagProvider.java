@@ -16,6 +16,7 @@ import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
@@ -111,6 +112,23 @@ public class ModItemTagProvider extends TagsProvider<Item> {
         addSet(ModItems.PLATES, "plates");
         addSet(ModItems.BOWLS, "bowls");
         addSet(ModItems.CROCKERY_COMBOS, "crockery_combos");
+
+        tag(Tags.Items.DYED_BLACK).add(TagEntry.element(ModItems.BLACK_CUSHION.getId())).add(TagEntry.element(ModItems.BLACK_SHEET.getId()));
+        tag(Tags.Items.DYED_BLUE).add(TagEntry.element(ModItems.BLUE_CUSHION.getId())).add(TagEntry.element(ModItems.BLUE_SHEET.getId()));
+        tag(Tags.Items.DYED_BROWN).add(TagEntry.element(ModItems.BROWN_CUSHION.getId())).add(TagEntry.element(ModItems.BROWN_SHEET.getId()));
+        tag(Tags.Items.DYED_CYAN).add(TagEntry.element(ModItems.CYAN_CUSHION.getId())).add(TagEntry.element(ModItems.CYAN_SHEET.getId()));
+        tag(Tags.Items.DYED_GRAY).add(TagEntry.element(ModItems.GRAY_CUSHION.getId())).add(TagEntry.element(ModItems.GRAY_SHEET.getId()));
+        tag(Tags.Items.DYED_GREEN).add(TagEntry.element(ModItems.GREEN_CUSHION.getId())).add(TagEntry.element(ModItems.GREEN_SHEET.getId()));
+        tag(Tags.Items.DYED_LIGHT_BLUE).add(TagEntry.element(ModItems.LIGHT_BLUE_CUSHION.getId())).add(TagEntry.element(ModItems.LIGHT_BLUE_SHEET.getId()));
+        tag(Tags.Items.DYED_LIGHT_GRAY).add(TagEntry.element(ModItems.LIGHT_GRAY_CUSHION.getId())).add(TagEntry.element(ModItems.LIGHT_GRAY_SHEET.getId()));
+        tag(Tags.Items.DYED_LIME).add(TagEntry.element(ModItems.LIME_CUSHION.getId())).add(TagEntry.element(ModItems.LIME_SHEET.getId()));
+        tag(Tags.Items.DYED_MAGENTA).add(TagEntry.element(ModItems.MAGENTA_CUSHION.getId())).add(TagEntry.element(ModItems.MAGENTA_SHEET.getId()));
+        tag(Tags.Items.DYED_ORANGE).add(TagEntry.element(ModItems.ORANGE_CUSHION.getId())).add(TagEntry.element(ModItems.ORANGE_SHEET.getId()));
+        tag(Tags.Items.DYED_PINK).add(TagEntry.element(ModItems.PINK_CUSHION.getId())).add(TagEntry.element(ModItems.PINK_SHEET.getId()));
+        tag(Tags.Items.DYED_PURPLE).add(TagEntry.element(ModItems.PURPLE_CUSHION.getId())).add(TagEntry.element(ModItems.PURPLE_SHEET.getId()));
+        tag(Tags.Items.DYED_RED).add(TagEntry.element(ModItems.RED_CUSHION.getId())).add(TagEntry.element(ModItems.RED_SHEET.getId()));
+        tag(Tags.Items.DYED_WHITE).add(TagEntry.element(ModItems.WHITE_CUSHION.getId())).add(TagEntry.element(ModItems.WHITE_SHEET.getId()));
+        tag(Tags.Items.DYED_YELLOW).add(TagEntry.element(ModItems.YELLOW_CUSHION.getId())).add(TagEntry.element(ModItems.YELLOW_SHEET.getId()));
     }
 
     private void addSet(ResourcefulRegistry<Item> registry, String name) {

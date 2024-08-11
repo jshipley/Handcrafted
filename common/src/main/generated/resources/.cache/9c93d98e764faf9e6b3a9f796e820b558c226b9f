@@ -1,4 +1,20 @@
-// 1.21	2024-06-14T15:04:48.021088	Tags for minecraft:block mod id handcrafted
+// 1.21.1	2024-08-11T00:28:41.648676	Tags for minecraft:block mod id handcrafted
+405166136525f6bddc8620260bb0e639e9e7ac1c data/c/tags/block/dyed/black.json
+7ce3cdb9816bcc547ebb098775d35dd6422bb75e data/c/tags/block/dyed/blue.json
+7bbbe3959ea94e64798348375e384a81979390e1 data/c/tags/block/dyed/brown.json
+3721b4ad3f4cbe9471ebfa974c1e941f3630113c data/c/tags/block/dyed/cyan.json
+49514d73a256713bab9574944788c0f89c721afd data/c/tags/block/dyed/gray.json
+0b158561546d2a3101ee0fd01e687479327b2a5c data/c/tags/block/dyed/green.json
+9212d9d7877ca767621d763de4509bf28773fcbf data/c/tags/block/dyed/light_blue.json
+8a886c03947453f0a5c3b100832ae224078b131d data/c/tags/block/dyed/light_gray.json
+579e7df72af5206ab7f4ade94bdf03f0d6798fb7 data/c/tags/block/dyed/lime.json
+a9e666e6720a6ac78eadf17dc082d86ff11924e4 data/c/tags/block/dyed/magenta.json
+9339147ae172855425ec9e8ad1af16e2f6bba6fe data/c/tags/block/dyed/orange.json
+b11578b843a6a61f0ca938873f457a785d254f4b data/c/tags/block/dyed/pink.json
+b96c13f9baf2201cbfd9cf7738266e4baa2679df data/c/tags/block/dyed/purple.json
+d9a8259d3f31b0549714749d878b5f64168d375e data/c/tags/block/dyed/red.json
+314f60ba0fcccfe3b6026be315573056cc109237 data/c/tags/block/dyed/white.json
+9fe536553918ba267783727e1c51217e8173bf43 data/c/tags/block/dyed/yellow.json
 148d9202ace672cfdf451a46397702b32fab9450 data/handcrafted/tags/block/benches.json
 3662d7ac15380cec631c2eb872b6cbbb69072d62 data/handcrafted/tags/block/bowls.json
 d23ee811738879d0b22d489c76f6947f6b0ccf40 data/handcrafted/tags/block/chairs.json

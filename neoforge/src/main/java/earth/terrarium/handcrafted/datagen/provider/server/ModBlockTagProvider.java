@@ -16,6 +16,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
@@ -65,6 +66,23 @@ public class ModBlockTagProvider extends TagsProvider<Block> {
         addSet(ModBlocks.PLATES, "plates");
         addSet(ModBlocks.BOWLS, "bowls");
         addSet(ModBlocks.CROCKERY_COMBOS, "crockery_combos");
+
+        tag(Tags.Blocks.DYED_BLACK).add(TagEntry.element(ModBlocks.BLACK_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_BLUE).add(TagEntry.element(ModBlocks.BLUE_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_BROWN).add(TagEntry.element(ModBlocks.BROWN_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_CYAN).add(TagEntry.element(ModBlocks.CYAN_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_GRAY).add(TagEntry.element(ModBlocks.GRAY_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_GREEN).add(TagEntry.element(ModBlocks.GREEN_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_LIGHT_BLUE).add(TagEntry.element(ModBlocks.LIGHT_BLUE_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_LIGHT_GRAY).add(TagEntry.element(ModBlocks.LIGHT_GRAY_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_LIME).add(TagEntry.element(ModBlocks.LIME_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_MAGENTA).add(TagEntry.element(ModBlocks.MAGENTA_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_ORANGE).add(TagEntry.element(ModBlocks.ORANGE_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_PINK).add(TagEntry.element(ModBlocks.PINK_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_PURPLE).add(TagEntry.element(ModBlocks.PURPLE_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_RED).add(TagEntry.element(ModBlocks.RED_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_WHITE).add(TagEntry.element(ModBlocks.WHITE_CUSHION.getId()));
+        tag(Tags.Blocks.DYED_YELLOW).add(TagEntry.element(ModBlocks.YELLOW_CUSHION.getId()));
     }
 
     private void addMineableTags() {
