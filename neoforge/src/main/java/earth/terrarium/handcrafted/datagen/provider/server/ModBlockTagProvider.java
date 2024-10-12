@@ -83,6 +83,8 @@ public class ModBlockTagProvider extends TagsProvider<Block> {
         tag(Tags.Blocks.DYED_RED).add(TagEntry.element(ModBlocks.RED_CUSHION.getId()));
         tag(Tags.Blocks.DYED_WHITE).add(TagEntry.element(ModBlocks.WHITE_CUSHION.getId()));
         tag(Tags.Blocks.DYED_YELLOW).add(TagEntry.element(ModBlocks.YELLOW_CUSHION.getId()));
+
+        tag(TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("farmersdelight", "heat_sources"))).add(TagEntry.element(ModBlocks.OVEN.getId()));
     }
 
     private void addMineableTags() {

@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-11T00:28:41.648676	Tags for minecraft:block mod id handcrafted
+// 1.21.1	2024-10-11T18:41:20.20699959	Tags for minecraft:block mod id handcrafted
 405166136525f6bddc8620260bb0e639e9e7ac1c data/c/tags/block/dyed/black.json
 7ce3cdb9816bcc547ebb098775d35dd6422bb75e data/c/tags/block/dyed/blue.json
 7bbbe3959ea94e64798348375e384a81979390e1 data/c/tags/block/dyed/brown.json
@@ -15,6 +15,7 @@ b96c13f9baf2201cbfd9cf7738266e4baa2679df data/c/tags/block/dyed/purple.json
 d9a8259d3f31b0549714749d878b5f64168d375e data/c/tags/block/dyed/red.json
 314f60ba0fcccfe3b6026be315573056cc109237 data/c/tags/block/dyed/white.json
 9fe536553918ba267783727e1c51217e8173bf43 data/c/tags/block/dyed/yellow.json
+1f2cec63f7a8aa181b70aafe1a594322730ca004 data/farmersdelight/tags/block/heat_sources.json
 148d9202ace672cfdf451a46397702b32fab9450 data/handcrafted/tags/block/benches.json
 3662d7ac15380cec631c2eb872b6cbbb69072d62 data/handcrafted/tags/block/bowls.json
 d23ee811738879d0b22d489c76f6947f6b0ccf40 data/handcrafted/tags/block/chairs.json
